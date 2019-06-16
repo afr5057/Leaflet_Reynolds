@@ -50,19 +50,19 @@ d3.json(API_plates, function (geoJson) {
 
 
 function Color(magnitude) {
-    if (magnitude >= 7) {
+    if (magnitude > 7) {
         return 'red'
-    } else if (magnitude >= 6) {
+    } else if (magnitude > 6) {
         return 'orange'
-    } else if (magnitude >= 5) {
+    } else if (magnitude > 5) {
         return 'yellow'
-    } else if (magnitude >= 4) {
+    } else if (magnitude > 4) {
         return 'green'
-    } else if (magnitude >= 3) {
+    } else if (magnitude > 3) {
         return 'blue'
-    } else if (magnitude >= 2) {
+    } else if (magnitude > 2) {
         return 'indigo'
-    } else if (magnitude >= 1) {
+    } else if (magnitude > 1) {
         return 'violet'    
     } else {
         return 'white'
