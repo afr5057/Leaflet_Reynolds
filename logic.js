@@ -1,8 +1,8 @@
-var API_quakes = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
-// console.log (API_quakes)
+// var API_quakes = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
+var API_quakes = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
 var API_plates = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json"
-// console.log (API_plates)
 
+// increase circle size by 4 times diameter
 function markerSize(magnitude) {
     return magnitude * 4;
 };
@@ -41,8 +41,9 @@ d3.json(API_plates, function (geoJson) {
     L.geoJSON(geoJson.features, {
         style: function (geoJsonFeature) {
             return {
-                weight: 4,
-                color: 'red'
+                weight: 2,
+                color: 'red',
+                opacity: 0.65
             }
         },
     }).addTo(plateBoundary);
@@ -51,21 +52,21 @@ d3.json(API_plates, function (geoJson) {
 
 function Color(magnitude) {
     if (magnitude > 7) {
-        return 'red'
+        return '#0a100f'
     } else if (magnitude > 6) {
-        return 'orange'
+        return '#273f3e'
     } else if (magnitude > 5) {
-        return 'yellow'
+        return '#446f6c'
     } else if (magnitude > 4) {
-        return 'green'
+        return '#578e8b'
     } else if (magnitude > 3) {
-        return 'blue'
+        return '#64a19d'
     } else if (magnitude > 2) {
-        return 'indigo'
+        return '#90bbb8'
     } else if (magnitude > 1) {
-        return 'violet'    
+        return '#d0e2e1'    
     } else {
-        return 'white'
+        return '#eff5f5'
     }
 };
 
@@ -124,7 +125,7 @@ function createMap() {
     legend.onAdd = function (map) {
 
         var div = L.DomUtil.create('div', 'info legend'),
-            magnitude = [0, 1, 2, 3, 4, 5, 6],
+            magnitude = [0, 1, 2, 3, 4, 5, 6, 7],
             labels = [];
 
         div.innerHTML += "<h4 style='margin:4px'>Magnitude</h4>"
